@@ -75,7 +75,7 @@ const Gallery: React.FC<GalleryProps> = ({
         <main className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2 gap-[10px] h-[55vh]">
           {smallImages.map((image: Image) => (
             <img
-              className="rounded-[5px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26vh] cursor-pointer" //størrelsen på billedet skal opdateret - så de har samme størrelse på den store
+              className="rounded-[5px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26vh] cursor-pointer"
               key={image.id}
               onClick={() => handleSmallImageClick(image)}
               src={
