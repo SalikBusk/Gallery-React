@@ -12,7 +12,12 @@ interface GalleryProps {
   onClick: () => void;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ id, bigImage, smallImages, onClick }) => {
+const Gallery: React.FC<GalleryProps> = ({
+  id,
+  bigImage,
+  smallImages,
+  onClick,
+}) => {
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   const handleBigImageClick = () => {
@@ -23,35 +28,39 @@ const Gallery: React.FC<GalleryProps> = ({ id, bigImage, smallImages, onClick })
   };
 
   const handleSmallImageClick = (image: Image) => {
-    if (selectedImage) {
-      setSelectedImage(selectedImage);
-      onClick();
+    if (selectedImage && selectedImage.id === image.id) {
+      setSelectedImage(null);
+    } else {
+      setSelectedImage(image);
     }
-    setSelectedImage(image);
   };
 
   return (
     <>
       <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-[10px] w-full my-[30px]">
-        <figure>
+        <main className="h-[55vh]">
           <img
-            className="rounded-[5px] sm:rounded-[5px] md:rounded-[10px] object-cover w-full h-[55vh]"
+            className="rounded-[5px] object-cover w-full h-full"
             src={selectedImage ? selectedImage.url : bigImage}
             alt=""
             onClick={handleBigImageClick}
           />
-        </figure>
-        <figure className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2 gap-[10px]">
+        </main>
+        <main className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2 gap-[10px] h-[55vh]">
           {smallImages.map((image: Image) => (
-            <article key={image.id} onClick={() => handleSmallImageClick(image)}>
-              <img
-                className="rounded-[5px] sm:rounded-[5px] md:rounded-[10px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26.5vh] cursor-pointer"
-                src={selectedImage ? selectedImage.url : image.url}
-                alt=""
-              />
-            </article>
+            <img
+              className="rounded-[5px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26.5vh] cursor-pointer"
+              key={image.id}
+              onClick={() => handleSmallImageClick(image)}
+              src={
+                selectedImage && selectedImage.id === image.id
+                  ? bigImage
+                  : image.url
+              }
+              alt=""
+            />
           ))}
-        </figure>
+        </main>
       </section>
     </>
   );
