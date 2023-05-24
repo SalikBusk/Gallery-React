@@ -1,2 +1,7 @@
 # Gallery-React
-Gallery-React
+
+1. cd client
+
+2. npm install 
+
+3. npm start
