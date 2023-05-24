@@ -61,7 +61,7 @@ const Gallery: React.FC<GalleryProps> = ({
 
   return (
     <>
-      <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-[10px] w-full my-[30px]">
+      <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-[10px] w-full my-[30px] overflow-hidden">
         {/* ===== store billede ===== */}
         <main className="h-[55vh]">
           <img
@@ -75,7 +75,7 @@ const Gallery: React.FC<GalleryProps> = ({
         <main className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2 gap-[10px] h-[55vh]">
           {smallImages.map((image: Image) => (
             <img
-              className="rounded-[5px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26vh] cursor-pointer"
+              className="rounded-[5px] object-cover w-full h-[50px] sm:h-[150px] md:h-[26.9vh] xl:h-[27vh] cursor-pointer"
               key={image.id}
               onClick={() => handleSmallImageClick(image)}
               src={
